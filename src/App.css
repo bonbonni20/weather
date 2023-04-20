@@ -1,0 +1,49 @@
+h1{
+  text-align: center;
+}
+
+.search_bar,
+.week_section,
+.today_section{
+  display: flex;
+  justify-content: center;
+}
+
+.week_section_card{
+  display: flex;
+  justify-content: space-between;
+}
+
+.today_section{
+  padding: 20px;
+}
+.weather_icon{
+  margin-right: 200px;
+} 
+.today_section_info{
+  float: right;
+}
+
+/* .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.myInput {
+  box-sizing: border-box;
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+
+  display: flex;
+  justify-content: center;
+} */
