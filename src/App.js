@@ -10,35 +10,37 @@ function App() {
   let[citiesInfo, setCitiesInfo] = useState([]);
   //current weather
   let [data, setData] = useState({});
-  let apiKey = '6e36900b3fd3c00602e8d7d2f7cab1ab'
+  let apiKey = '2848195f80ab69cb3bd3003ab44f492d'
   let weatherURL = `http://openweathermap.org/img/wn/`
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
-  const fetchCitieslist = async() => {
-    const cities_URL =`http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${apiKey}`
-    await axios.get(cities_URL)
-    .then(response => response.json())
-    .then(cityList => {setCitiesInfo(cityList)  
-    console.log(cityList)})
-    .catch(error => console.log(error))
+  const fetchCitieslist = () => {
+    try{
+      const cities_URL =`http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${apiKey}`
+      fetch(cities_URL)
+      .then(response => response.json())
+      .then(cityList => {setCitiesInfo(cityList)
+      console.log(cityList)})
+    }
+    catch(error) { console.log(error);}  
   }
-
-  // const checkWeather = () => {
+  // const checkWeather = async() => {
   //   const url = `https://api.openweathermap.org/data/2.5/weather?&q=${search}&units=metric&appid=${apiKey}`
-  //   fetch(url)
-  //     .then(response => response.json())
+  //   await axios.get(url)
+  //     .then(response => response.data)
   //     .then(result => setData(result))
   //     .catch(error => console.log(error))
   // }
 
   const handleClick = (value) => {
-    fetchCitieslist(value)
-    // checkWeather(value)
-    // fetchForecastData()
-    
-    console.log('meh')
-    console.log(value)
-    console.log(citiesInfo)
+    useEffect = () => {
+      fetchCitieslist(value)
+      // checkWeather(value)
+       // fetchForecastData()
+       
+       console.log('meh')
+       console.log(citiesInfo)
+    }
   }
 
   // const fetchForecastData =() =>{
@@ -47,7 +49,6 @@ function App() {
   //   .then(response => {
   //   })
   // }
-  const options = [ {title:'The Godfather'},{title:'Pulp Fiction'}];
   return (
     <div >
       <h1>Open Weather</h1>
@@ -90,7 +91,23 @@ function App() {
           />
           </Stack>
       // </div> */}
-      
+      <div className='today_section'>
+      <Card
+          variant='outlined'
+          sx={{ width: 500 }}>
+          <CardHeader
+            title={data.name} />
+          {typeof(data.main) !== "undefined" ? (
+            <CardContent className='today_section'>
+              <img className='weather_icon' src={`${weatherURL}${data.weather[0].icon}@2x.png`} />
+              <div className='today_section_info'><Typography variant='h6'>{data.main.temp}°</Typography>
+                <Typography>{data.weather[0].description}</Typography>
+                <Typography>Feels like <b>{data.main.feels_like}°</b></Typography></div>
+
+            </CardContent>) : null} 
+
+         </Card>
+      </div>
 
       {/* <div className='week_section'>
         <Card
@@ -102,9 +119,9 @@ function App() {
             <Typography variant='h6'>5°</Typography>
           </CardContent>
         </Card>
-      </div>  */}
+      </div> */}
     </div> 
-    </div>
+  </div>
   )
 }
 

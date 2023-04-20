@@ -47,3 +47,21 @@ h1{
   display: flex;
   justify-content: center;
 } */
+
+/* <div className='today_section'>
+<Card
+    variant='outlined'
+    sx={{ width: 500 }}>
+    <CardHeader
+      title={data.name} />
+    {typeof(data.main) !== "undefined" ? (
+      <CardContent className='today_section'>
+        <img className='weather_icon' src={`${weatherURL}${data.weather[0].icon}@2x.png`} />
+        <div className='today_section_info'><Typography variant='h6'>{data.main.temp}°</Typography>
+          <Typography>{data.weather[0].description}</Typography>
+          <Typography>Feels like <b>{data.main.feels_like}°</b></Typography></div>
+
+      </CardContent>) : null} 
+
+   </Card>
+</div> */
