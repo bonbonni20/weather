@@ -60,7 +60,7 @@ test("current weather", async () => {
   const currentWeather = await waitFor(() => screen.findAllByLatAndLon("lat", "lon"));
   expect((currentWeather).toHaveLength(3));
 })
-
+a
 // functions
 // 1. searchbar
 // 2. currentweather => (further func: more detail(hourly))
