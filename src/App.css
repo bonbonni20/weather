@@ -2,11 +2,56 @@ h1{
   text-align: center;
 }
 
-.search_bar,
-.week_section,
-.today_section{
+.search_section{
+  margin: 0 auto;
+  width: 30%;
+}
+.search_bar{
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.today_section,
+.week_section{
   display: flex;
   justify-content: center;
+  margin: 15px;
+  border-radius: 25px;
+}
+
+.info{
+  display: flex;
+  justify-content: space-between;
+}
+
+li{ list-style-type: none;}
+/* h1{
+  text-align: center;
+}
+
+.search_section,
+.dropdown_content,
+.today_section,
+.week_section{
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.search_bar{  
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.dropdown_content{
+  width: 100%;
+  cursor: pointer;
+  text-align: start;
+  border-radius: 15px;
+}
+
+.dropdown_content:hover{
+  background-color: burlywood;
 }
 
 .week_section_card{
@@ -14,36 +59,116 @@ h1{
   justify-content: space-between;
 }
 
-.today_section{
-  padding: 20px;
-}
-.weather_icon{
-  margin-right: 200px;
-} 
-.today_section_info{
-  float: right;
+.forecastWeath{
+  margin-right: 15px;
 }
 
-/* .dropdown {
-  position: relative;
-  display: inline-block;
+@media screen and (max-width: 992px){
+  .search_bar { width: 90%;}
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  overflow: auto;
-  border: 1px solid #ddd;
-  z-index: 1;
-}
-
-.myInput {
-  box-sizing: border-box;
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-
-  display: flex;
-  justify-content: center;
+@media screen and (max-width: 600px) {
+  .search_bar { width: 40%;}
 } */
+
+/* 
+import './App.css';
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, Typography } from '@mui/material';
+import axios from 'axios'
+import SearchIcon from '@mui/icons-material/Search'
+
+function App() {
+  let [state, setState] = useState(false);
+  let [search, setSearch] = useState("");
+  let [citiesInfo, setCitiesInfo] = useState([]);
+  //current weather
+  let [data, setData] = useState({});
+  let apiKey = '6e36900b3fd3c00602e8d7d2f7cab1ab'
+  let weatherURL = `http://openweathermap.org/img/wn/`
+  const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+  const fetchCitieslist = async (value) => {
+    const cities_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${apiKey}`
+    axios.get(cities_URL)
+      .then(response => response.data)
+      .then(cityList => {
+        setCitiesInfo(cityList)
+        console.log(cityList)
+      })
+      .catch(error => console.log(error))
+  }
+
+  const checkWeather = async (value) => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?&q=${value}&units=metric&appid=${apiKey}`
+    axios.get(url)
+      .then(response => response.data)
+      .then(result => setData(result))
+      .catch(error => console.log(error))
+  }
+
+  const handleClick = (value) => {
+    fetchCitieslist(value)
+      checkWeather(value)
+  }
+
+  // const fetchForecastData =() =>{
+  //   const foreCastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=2848195f80ab69cb3bd3003ab44f492d`
+  //   axios.get(foreCastUrl)
+  //   .then(response => {
+  //   })
+  // }
+  return (
+    <div >
+      <h1>Open Weather</h1>
+      {/* search bar /*
+      <div className='search_section'>
+        <input
+          className='search_bar'
+          placeholder='Search the city....'
+          type='text'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)} />
+        <SearchIcon fontSize='large' color="info" onClick={() => handleClick(search)} />
+      </div>
+      <div className='dropdown_list'>
+        {citiesInfo.map((city) => (
+          <div className='dropdown_content' onClick={() => handleClick(city.name)} >
+            {city.name}, {city.state}, {city.country}
+          </div>
+        ))}
+      </div>
+      <div className='today_section'>
+        <Card
+          variant='outlined'
+          sx={{ width: 500 }}>
+          <CardHeader
+            title={data.name} />
+          {typeof (data.main) !== "undefined" ? (
+            <CardContent className='today_section_info'>
+              <Typography variant='h3' component="div">
+                <img alt='weather-icon' src={`${weatherURL}${data.weather[0].icon}@2x.png`} />
+                <b>{data.main.temp}°</b>
+              </Typography>
+              <Typography>{data.weather[0].description}</Typography>
+              <Typography>Feels like <b>{data.main.feels_like}°</b></Typography>
+
+            </CardContent>) : null}
+        </Card>
+      </div>
+      <div className='week_section'>
+        <Card
+          variant='outlined'
+          sx={{ width: 500 }}>
+          <CardContent className='week_sectios_card' sx={{ gap: 5 }}>
+            <Typography variant='h6'>Today</Typography>
+            <Typography><img className='forecastWeath' />Mostly Cloudy</Typography>
+            <Typography variant='h6'>5°</Typography>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
+
+export default App;  */
