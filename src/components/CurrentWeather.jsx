@@ -23,6 +23,7 @@ const CurrentWeather = ({ data }) => {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
+                        alignItems: 'center',
                         p: 1,
                         m: 1,
                         marginTop:3,
@@ -33,7 +34,7 @@ const CurrentWeather = ({ data }) => {
                         bgcolor: '#cfd9df', 
                         height: 300,         
                     }}>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={1} gap='5' m='0'>
                         <Grid item xs={12} alignItems='center'>
                             <Typography variant='h5'>{data[0]}</Typography>
                             <Typography variant='subtitle'>{dateFormat(data[1].current.dt)}</Typography>
