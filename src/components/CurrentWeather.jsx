@@ -27,11 +27,11 @@ const CurrentWeather = ({ data }) => {
                         m: 1,
                         marginTop:3,
                         mx: 'auto',
-                        maxWidth: 500,
+                        maxWidth: 484,
                         flexGrow: 1,
                         borderRadius: 5,                         
                         bgcolor: '#cfd9df', 
-                        height: 300,              
+                        height: 300,         
                     }}>
                     <Grid container spacing={1}>
                         <Grid item xs={12} alignItems='center'>

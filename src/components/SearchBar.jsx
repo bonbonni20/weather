@@ -45,6 +45,7 @@ const SearchBar = ({ searchInfo }) => {
                     maxWidth: 500,
                     flexFlow: 1,
                 }}
+                
                 disableUnderline
                 debounce='300'
                 startAdornment={
@@ -65,11 +66,15 @@ const SearchBar = ({ searchInfo }) => {
                     mx: 'auto',
                     maxWidth: 500,
                     flexGrow: 1,
-                    borderRadius: 5
+                    borderRadius: 5,
+                    position: 'absolute',
+                    right: 20,
+                    left:20,
+                    zIndex: 0,
+                    bgcolor: 'white'
                 }}>
                     {cityInfo.map((city, index) =>
                         <ListItem
-
                             key={index}
                             onClick={() => handleClick(city.name, city.lat, city.lon)}
                             sx={{ ":hover": { bgcolor: '#cfd9df', borderRadius: 5 } }}>
