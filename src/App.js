@@ -1,19 +1,18 @@
 import './App.css';
 import { useState } from 'react';
-import SearchBar from './components/SearchBar';
-import CurrentWeather from './components/CurrentWeather'
-import Forecast from './components/Forecast';
+import SearchBar from './components/SearchBar.jsx';
+import CurrentWeather from './components/CurrentWeather.jsx'
+import Forecast from './components/Forecast.jsx';
 import axios from 'axios';
 
 function App() {
-  let [cityName, setCityName] = useState("");
-  let [currentData, setCurrentData] = useState({});
-  let [forecastData, setForecastData] = useState({});
+  const [cityName, setCityName] = useState("");
+  const [currentData, setCurrentData] = useState({});
+  const [forecastData, setForecastData] = useState({});
 
   const handleSearchChange =async(searchInfo) =>
   {
     setCityName(searchInfo.name)
-    console.log(cityName, "cityname from app")
     await axios.get(`${process.env.REACT_APP_ONE_CALL}lat=${searchInfo.lat}&lon=${searchInfo.lon}&exclude=minutely,hourly,alerts&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
                     .then(res => {
                       setCurrentData(res.data)
