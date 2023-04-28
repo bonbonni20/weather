@@ -17,50 +17,27 @@ const CurrentWeather = ({ data }) => {
         return date.toLocaleDateString("en-us", options);
     }
     return (
-        <div>
+        <div className='flex justify-center m-8'>
             {data[1].current !== undefined &&
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        p: 1,
-                        m: 1,
-                        marginTop:3,
-                        mx: 'auto',
-                        maxWidth: 484,
-                        flexGrow: 1,
-                        borderRadius: 5,                         
-                        bgcolor: '#cfd9df', 
-                        height: 300,         
-                    }}>
-                    <Grid container spacing={1} gap='5' m='0'>
-                        <Grid item xs={12} alignItems='center'>
-                            <Typography variant='h5'>{data[0]}</Typography>
-                            <Typography variant='subtitle'>{dateFormat(data[1].current.dt)}</Typography>
-                        </Grid>
-                        <Grid item xs={4}><img alt='weather-icon' src={`${process.env.REACT_APP_WEATHER_URL}${data[1].current.weather[0].icon}@2x.png`} /></Grid>
-                        <Grid item xs={4} textAlign='center'>
-                            <Typography variant='h2'>{Math.round(data[1].current.temp)}°</Typography>
-                        </Grid>
-                        <Grid item xs={4} display='flex' justifyContent='center'>
-                            <Typography variant='h6'><b>{capitalize(data[1].current.weather[0].description)}</b></Typography>
-                            </Grid>
-                        <Grid item xs ={12} textAlign='center'><Typography variant='h6'>Air Conditions</Typography></Grid>
-                        <Grid item xs ={3}><Typography>Feels like<ThermostatIcon /></Typography>
-                            <Typography><b>{Math.round(data[1].current.feels_like)}°</b></Typography>
-                        </Grid>
-                        <Grid item xs ={3}><Typography>Wind <AirIcon /></Typography>
-                            <Typography><b>{Math.round(data[1].current.wind_speed)}</b> km/h</Typography>
-                            </Grid>
-                        <Grid item xs ={3}><Typography>Clouds <FilterDramaIcon /></Typography>
-                            <Typography><b>{data[1].current.clouds} %</b></Typography>
-                            </Grid>
-                        <Grid item xs ={3}><Typography>Humidity <OpacityIcon /></Typography>
-                            <Typography><b>{Math.round(data[1].current.humidity)} %</b></Typography>
-                            </Grid>
-                    </Grid>
-                </Box>}
+                <div className="border-solid m-9 w-2/5">
+                    <div className='flex-1 h-34'>
+                        <h1 className='font-bold'>{data[0]}</h1>
+                        <h2>{dateFormat(data[1].current.dt)}</h2>
+                    </div>
+                    <div className='flex justify-center'>
+                        <h1 className='text-2xl font-bold'>{Math.round(data[1].current.temp)}</h1>
+                        <img src={`${process.env.REACT_APP_WEATHER_URL}${data[1].current.weather[0].icon}@2x.png`} /> 
+                    </div> 
+                    <div className='flex justify-center'>Air Conditions</div>
+                    <div className='flex justify-between'>
+                        <p>Feels like {Math.round(data[1].current.feels_like)}</p>
+                        <p>Wind {Math.round(data[1].current.wind_speed)}</p>
+                        <p>Cloud {data[1].current.clouds} %</p>
+                        <p>Humidity {Math.round(data[1].current.humidity)} %</p>
+                    </div>
+
+                </div>
+            }
         </div>
     )
 }
